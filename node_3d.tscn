@@ -1,0 +1,194 @@
+[gd_scene load_steps=15 format=3 uid="uid://itirn0mat5d8"]
+
+[ext_resource type="Material" uid="uid://cobdj7xmmq3l7" path="res://Materials/Yellow_wall_01.tres" id="1_3xtna"]
+[ext_resource type="Material" uid="uid://dnjjxeino5u54" path="res://Materials/floor_woody_01.tres" id="1_k3dtq"]
+[ext_resource type="Material" uid="uid://b8nuqap6gvh7v" path="res://Materials/Sofa_material_01.tres" id="3_5cnxv"]
+[ext_resource type="Material" uid="uid://ciqa6fyop1l7" path="res://Materials/metalic_screen_bas_01.tres" id="4_8fss5"]
+[ext_resource type="Material" uid="uid://cvmunpg6q3opj" path="res://Materials/lcd_screen_01.tres" id="5_h4t0k"]
+[ext_resource type="Material" uid="uid://dvg4wsprva0sa" path="res://Materials/steel_01.tres" id="6_b5fvy"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ts58m"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_1mppl"]
+sky_material = SubResource("ProceduralSkyMaterial_ts58m")
+process_mode = 2
+
+[sub_resource type="Environment" id="Environment_auo7a"]
+background_mode = 2
+sky = SubResource("Sky_1mppl")
+tonemap_mode = 2
+sdfgi_enabled = true
+sdfgi_use_occlusion = true
+sdfgi_bounce_feedback = 0.57
+sdfgi_min_cell_size = 16.0
+glow_enabled = true
+volumetric_fog_enabled = true
+volumetric_fog_density = 1.0
+adjustment_enabled = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8wfor"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6wbri"]
+albedo_color = Color(0, 0, 0, 1)
+metallic = 1.0
+metallic_specular = 1.0
+roughness = 0.13
+anisotropy_enabled = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_y6t6f"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ee87l"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3t3j2"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 4.92769, 0)
+light_energy = 5.529
+light_indirect_energy = 16.0
+light_volumetric_fog_energy = 16.0
+light_angular_distance = 2.21
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_auo7a")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.993163, -0.11674, 0, 0.11674, 0.993163, 0.4193, 4.87252, 5.15319)
+
+[node name="House_ground" type="StaticBody3D" parent="."]
+transform = Transform3D(9.67343, 0, 0, 0, 1, 0, 0, 0, 11.2101, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="House_ground"]
+shape = SubResource("BoxShape3D_8wfor")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="House_ground/CollisionShape3D"]
+material = ExtResource("1_k3dtq")
+
+[node name="House_wall01" type="StaticBody3D" parent="."]
+transform = Transform3D(3.03028, 0, 0, 0, 7.49289, 0, 0, 0, 0.612697, -3.27235, 4.23279, -5.30265)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="House_wall01"]
+shape = SubResource("BoxShape3D_8wfor")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="House_wall01/CollisionShape3D"]
+material = ExtResource("1_3xtna")
+
+[node name="House_wall02" type="StaticBody3D" parent="."]
+transform = Transform3D(3.03028, 0, 0, 0, 7.33246, 0, 0, 0, 0.612697, 3.34277, 3.87465, -5.30265)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="House_wall02"]
+shape = SubResource("BoxShape3D_8wfor")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="House_wall02/CollisionShape3D"]
+material = ExtResource("1_3xtna")
+
+[node name="House_roof" type="StaticBody3D" parent="."]
+transform = Transform3D(9.67343, 0, 0, 0, 1, 0, 0, 0, 11.2101, 0, 7.8446, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="House_roof"]
+shape = SubResource("BoxShape3D_8wfor")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="House_roof/CollisionShape3D"]
+material = ExtResource("1_3xtna")
+
+[node name="House_wall03" type="StaticBody3D" parent="."]
+transform = Transform3D(0.308846, 0, 0, 0, 7.33246, 0, 0, 0, 0.612697, -0.0466707, 3.87465, -5.30265)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="House_wall03"]
+shape = SubResource("BoxShape3D_8wfor")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="House_wall03/CollisionShape3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.374266, 0, 0, 0)
+material = SubResource("StandardMaterial3D_6wbri")
+
+[node name="ReflectionProbe" type="ReflectionProbe" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.897068, 0)
+update_mode = 1
+max_distance = 16384.0
+
+[node name="House_wall04" type="StaticBody3D" parent="."]
+transform = Transform3D(0.929898, 0, 0, 0, 7.49289, 0, 0, 0, 9.45808, -4.42829, 4.23279, -0.271541)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="House_wall04"]
+shape = SubResource("BoxShape3D_8wfor")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="House_wall04/CollisionShape3D"]
+material = ExtResource("1_3xtna")
+
+[node name="House_wall05" type="StaticBody3D" parent="."]
+transform = Transform3D(0.929898, 0, 0, 0, 7.49289, 0, 0, 0, 4.48246, 4.3786, 4.23279, -0.271541)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="House_wall05"]
+shape = SubResource("BoxShape3D_8wfor")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="House_wall05/CollisionShape3D"]
+material = ExtResource("1_3xtna")
+
+[node name="House_wall06" type="StaticBody3D" parent="."]
+transform = Transform3D(8.99861, 0, 0, 0, 7.49289, 0, 0, 0, 1.20076, 0.284164, 4.23279, 5.03294)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="House_wall06"]
+shape = SubResource("BoxShape3D_8wfor")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="House_wall06/CollisionShape3D"]
+material = ExtResource("1_3xtna")
+
+[node name="sofa_base_01" type="StaticBody3D" parent="."]
+transform = Transform3D(2.73622, 0, 0, 0, 1.47827, 0, 0, 0, 6.33569, -3.15522, 0.959637, -1.94363)
+
+[node name="base" type="CollisionShape3D" parent="sofa_base_01"]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="sofa_base_01/base"]
+transform = Transform3D(1, 0, 0, 0, 0.999999, 0, 0, 0, 0.479804, 0, 0, -0.244788)
+material = ExtResource("3_5cnxv")
+
+[node name="sofa_seat_up_01" type="StaticBody3D" parent="."]
+
+[node name="base2" type="CollisionShape3D" parent="sofa_seat_up_01"]
+transform = Transform3D(1.15515, 0, 0, 0, 2.07664, 0, 0, 0, 6.33568, -3.98417, 1.85156, -1.94363)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="sofa_seat_up_01/base2"]
+transform = Transform3D(1, 0, 0, 0, 0.999999, 0, 0, 0, 0.479804, 0, 0, -0.244788)
+material = ExtResource("3_5cnxv")
+
+[node name="Telivision" type="StaticBody3D" parent="."]
+transform = Transform3D(0.107049, 0, 0, 0, 2.60635, 0, 0, 0, 3.8515, 3.50702, 5.11528, -0.334763)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Telivision"]
+shape = SubResource("BoxShape3D_y6t6f")
+
+[node name="base" type="CSGBox3D" parent="Telivision/CollisionShape3D"]
+material = ExtResource("4_8fss5")
+
+[node name="screen" type="CSGBox3D" parent="Telivision/CollisionShape3D"]
+transform = Transform3D(1, 0, 0, 0, 0.909242, 0, 0, 0, 0.949375, -0.156139, 0, 0)
+material = ExtResource("5_h4t0k")
+
+[node name="Test_Player" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.600233, 6.15608, -4.71469)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Test_Player"]
+shape = SubResource("BoxShape3D_ee87l")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Test_Player/CollisionShape3D"]
+
+[node name="fridge" type="StaticBody3D" parent="."]
+transform = Transform3D(2.23185, 0, 0, 0, 2.72433, 0, 0, 0, 2.33949, -2.8931, 1.80799, 3.2921)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="fridge"]
+shape = SubResource("BoxShape3D_3t3j2")
+
+[node name="Base_01" type="CSGBox3D" parent="fridge/CollisionShape3D"]
+material = ExtResource("6_b5fvy")
+
+[node name="middle_Black_areqa" type="CSGBox3D" parent="fridge/CollisionShape3D/Base_01"]
+transform = Transform3D(0.907443, 0, 0, 0, 0.178055, 0, 0, 0, 0.888947, 0, 0.506636, 0)
+material = ExtResource("5_h4t0k")
+
+[node name="Base_02" type="CSGBox3D" parent="fridge/CollisionShape3D/Base_01/middle_Black_areqa"]
+transform = Transform3D(1.09734, 0, 0, 0, 2.74872, 0, 0, 0, 1.18113, 0, 1.8825, 0)
+material = ExtResource("6_b5fvy")
